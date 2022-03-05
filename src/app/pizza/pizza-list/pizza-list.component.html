@@ -1,0 +1,51 @@
+<br />
+<p>Testing JSON</p>
+<div>{{ params | json }}</div>
+<br />
+
+<!--ngModel - da posaljemo serveru sort=name, sort=grade, sort=price-->
+<!--params koje server prima smo dekl u pizza-list komponenti a dalje servisu-->
+
+<div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+  <select [(ngModel)]="params.sort" (change)="onSortCriteriaChanged()" >
+    <option ngbDropdownItem value="name">Name</option>
+    <option ngbDropdownItem value="grade">Grade</option>
+    <option ngbDropdownItem value="price">Price</option>
+  </select>
+</div>
+&nbsp;
+<div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+  <select [(ngModel)]="params.sortDirection" (change)="onSortCriteriaChanged()" >
+    <option ngbDropdownItem value="asc">Ascending</option>
+    <option ngbDropdownItem value="desc">Descending</option>
+  </select>
+</div>
+
+
+
+
+<!--
+<div>
+
+<select style="background-color: rgb(211, 89, 8)" [(ngModel)]="params.sort"
+(change)="onSortCriteriaChanged()">
+  <option value="name">Name</option>
+  <option value="grade">Grade</option>
+  <option value="price">Price</option>
+</select>
+&nbsp;
+<select style="background-color: rgb(211, 89, 8)" [(ngModel)]="params.sortDirection"
+(change)="onSortCriteriaChanged()">
+  <option value="asc">Ascending</option>
+  <option value="desc">Descending</option>
+</select>
+</div>-->
+
+
+<!--prolazimo kroz pizzaList niz iz komponente pizza-list roditelja-->
+<!--Ispisujemo svaki objekat dobijen iz servisa sa servera!-->
+<!--[pizza] je iz inputa deteta, dakle roditelj salje detetu objekte pizza iz
+ngFor-a -->
+<app-pizza-details *ngFor="let pizza of pizzaList" [pizza]="pizza" (pizzaDeleted)="onPizzaDeleted($event)"></app-pizza-details>
+<app-pagination [pageCount]="pageCount" (onPageSelected)="changePage($event)"></app-pagination>
+  

@@ -1,0 +1,117 @@
+<br>
+<p> TESTIRANJE JSON</p>
+<p> {{ pizza | json}} </p>
+<p>{{ pizzaForm.value | json }} {{ pizzaForm.status | json }}</p>
+
+<form [formGroup]="pizzaForm" (submit)="onSubmit()" novalidate>
+
+	<div class="form-group row">
+		<label for="name" class="col-sm-2 col-form-label">Name</label>
+		<div class="col-sm-10">
+			
+			<input class="form-control" type="text" name="name" id="name" placeholder="Name"
+				formControlName="name">
+
+			<small *ngIf="pizzaForm.controls['name'].touched 
+				&& pizzaForm.controls['name'].errors?.['required']" class="text-danger">
+				Name is required</small>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="description" class="col-sm-2 col-form-label">Description</label>
+		<div class="col-sm-10">
+			<input class="form-control" type="text" name="description" id="description" placeholder="Description"
+				formControlName="description">
+
+			<small *ngIf="pizzaForm.controls['description'].touched 
+				&& pizzaForm.controls['description'].errors?.['required']" class="text-danger">
+				Description is required</small>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="grade" class="col-sm-2 col-form-label">Grade</label>
+		<div class="col-sm-10">
+			<input class="form-control" type="number" name="grade" id="grade" placeholder="Grade"
+				formControlName="grade">
+			
+			<span *ngIf="pizzaForm.controls['grade'].touched">
+				<small *ngIf="pizzaForm.controls['grade'].errors?.['required']" class="text-danger">
+					Grade is required</small>
+
+				<small *ngIf="pizzaForm.controls['grade'].errors?.['min']
+					|| pizzaForm.controls['grade'].errors?.['max']" class="text-danger">
+					Grade should be between 1-5</small>
+			</span>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="price" class="col-sm-2 col-form-label">Price</label>
+		<div class="col-sm-10">
+			<input class="form-control" type="number" name="price" id="price" placeholder="Price"
+				formControlName="price">
+			
+			<span *ngIf="pizzaForm.controls['price'].touched">	
+				<small *ngIf="pizzaForm.controls['price'].errors?.['required']" class="text-danger">
+					Price is required</small>
+			</span>
+		</div>
+	</div>
+    <br>
+	<div class="form-group row float-left">
+		<div class="col">
+ 			<button class="btn btn-primary" type="button" (click)="onRevert()">Revert</button>
+ 		</div>
+ 		<div class="col-11">
+ 			<button class="btn btn-primary" type="submit" [disabled]="pizzaForm.invalid" >Submit</button>
+ 		</div>
+	</div>
+</form>
+
+
+
+
+
+<!--<form [formGroup]="pizzaForm">
+
+	<div class="form-group row">
+		<label for="name" class="col-2 col-form-label">Name</label>
+		<div class="col-10">
+			<input class="form-control" type="text" id="name" placeholder="Name"
+				formControlName="name">
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="description" class="col-2 col-form-label">Description</label>
+		<div class="col-10">
+			<input class="form-control" type="text" id="description" placeholder="Description"
+				formControlName="description">
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="grade" class="col-2 col-form-label">Grade</label>
+		<div class="col-10">
+			<input class="form-control" type="number" id="grade" placeholder="Grade"
+				formControlName="grade">
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="price" class="col-2 col-form-label">Price</label>
+		<div class="col-10">
+			<input class="form-control" type="number" id="price" placeholder="Price"
+				formControlName="price">
+		</div>
+	</div>
+
+	<div class="form-group row float-right">
+		<div class="col-12">
+			<button class="btn btn-primary" type="submit">Submit</button>
+		</div>
+	</div>
+</form>
+-->

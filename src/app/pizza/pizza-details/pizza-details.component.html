@@ -1,0 +1,22 @@
+<!--Na templejtu komponente ćemo za sada samo prikazati pizza polje pomoću interpolacije. Deo | 
+json je pipe koji omogućava da se  objekat pizza prikaže kao JSON string.
+<p>Pizza details</p>
+{{ pizza | json}} 
+-->
+<div class="row">
+    <div class="col-7">
+        <br>
+        <h3>{{pizza.name}}, <span style="color:red" >${{pizza.price}}</span></h3>
+        <div >
+            <span [ngClass]="{'text-white bg-success':pizza.grade>4}"><strong> Rating:{{pizza.grade}}&nbsp; </strong></span>
+            <small>{{pizza.description}}</small>
+        </div>
+    </div>
+    <div class="col-7 my-auto">
+        <br>
+        <!--U PizzaDetailsComponent je dodato dugme Edit. Klikom na njega se redirektujemo na EditWineComponent, pri 
+        čemu kao parametar šaljemo id pice na koju je kliknuto /pizzas/1 koju picu editujemo -->
+        <button class="btn btn-primary" [routerLink]="['/pizzas/', pizza._id]">Edit pizza</button>&nbsp;
+        <button class="btn btn-danger" (click)="onDelete(pizza._id)">Delete</button>
+    </div>
+</div>
